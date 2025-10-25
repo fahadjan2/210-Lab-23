@@ -31,7 +31,7 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    cout << "test152" << endl;
+    cout << "test1542" << endl;
     list<Goat> trip;
 
     int choice = main_menu();
@@ -39,9 +39,9 @@ int main() {
         if (choice == 1) {
             add_goat(trip, names, colors);
         } else if (choice == 2) {
-
+            delete_goat(trip);
         } else if (choice == 3) {
-
+            display_trip(trip);
         }
 
         choice = main_menu();
@@ -50,6 +50,7 @@ int main() {
     return 0;
 }
 
+//Displays the main menu options and asks for user input
 int main_menu() {
     int choice;
     cout << "*** GOAT MANAGER 3001 ***" << endl;
@@ -80,13 +81,15 @@ int select_goat(list<Goat> trip) {
 //Deletes a goat selected by user
 void delete_goat(list<Goat> &trip) {
     int choice = select_goat(trip);
-    int count = 0;
-    for (Goat g : trip) {
-        count++;
+    int count = 1;
+    for (auto it = trip.begin(); it != trip.end(); ++it) {
         if (count == choice) { 
-            trip.erase(choice);
+            trip.erase(it);
+            return;
         }
+        count++;
     }
+    cout << endl;
 }
 
 //Adds goat with random elements
@@ -108,4 +111,5 @@ void display_trip(list<Goat> trip) {
         count++;
         cout << "[" << count << "] " << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")" << endl; 
     }
+    cout << endl;
 }

@@ -28,15 +28,16 @@ int main() {
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     i = 0;
-    while (fin1 >> colors[i++]) {cout << colors[i];};
+    while (fin1 >> colors[i++]);
     fin1.close();
 
-    cout << "test1" << endl;
-    
+    cout << "test12" << endl;
+    list<Goat> trip;
+
     int choice = main_menu();
     while (choice != 4) {
         if (choice == 1) {
-            add_goat();
+            //add_goat(trip);
         } else if (choice == 2) {
 
         } else if (choice == 3) {
@@ -61,6 +62,7 @@ int main_menu() {
         cout << "Choice --> ";
         cin >> choice;
     }
+    cout << endl;
 
     return choice;
 }
@@ -73,8 +75,16 @@ void delete_goat(list<Goat> &trip) {
 
 }
 
-void add_goat(list<Goat> &trip, string [], string []) {
-    trip.push_back();
+void add_goat(list<Goat> &trip, string n[] , string c[]) {
+    int randNum = rand() % SZ_NAMES;
+    string name =  n[randNum];
+    randNum = rand() % SZ_COLORS;
+    string color = c[randNum];
+    randNum = rand() % (MAX_AGE + 1);
+    int age = randNum;
+
+    Goat * newGoat = new Goat(name, age, color);
+   // trip.push_back(newGoat);
 }
 
 void display_trip(list<Goat> trip) {

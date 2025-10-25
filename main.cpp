@@ -31,7 +31,6 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    cout << "test1542" << endl;
     list<Goat> trip;
 
     int choice = main_menu();

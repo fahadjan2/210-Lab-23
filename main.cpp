@@ -31,13 +31,13 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    cout << "test12" << endl;
+    cout << "test152" << endl;
     list<Goat> trip;
 
     int choice = main_menu();
     while (choice != 4) {
         if (choice == 1) {
-            //add_goat(trip);
+            add_goat(trip, names, colors);
         } else if (choice == 2) {
 
         } else if (choice == 3) {
@@ -67,14 +67,29 @@ int main_menu() {
     return choice;
 }
 
+//Selects a specific goat from the trip
 int select_goat(list<Goat> trip) {
+    display_trip(trip);
+    int choice;
+    cout << "Select a goat: ";
+    cin >> choice;
 
+    return choice;
 }
 
+//Deletes a goat selected by user
 void delete_goat(list<Goat> &trip) {
-
+    int choice = select_goat(trip);
+    int count = 0;
+    for (Goat g : trip) {
+        count++;
+        if (count == choice) { 
+            trip.erase(choice);
+        }
+    }
 }
 
+//Adds goat with random elements
 void add_goat(list<Goat> &trip, string n[] , string c[]) {
     int randNum = rand() % SZ_NAMES;
     string name =  n[randNum];
@@ -83,10 +98,14 @@ void add_goat(list<Goat> &trip, string n[] , string c[]) {
     randNum = rand() % (MAX_AGE + 1);
     int age = randNum;
 
-    Goat * newGoat = new Goat(name, age, color);
-   // trip.push_back(newGoat);
+    trip.push_back(Goat(name, age, color));
 }
 
+//Displays the goats
 void display_trip(list<Goat> trip) {
-
+    int count = 0;
+    for (Goat g : trip) {
+        count++;
+        cout << "[" << count << "] " << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")" << endl; 
+    }
 }
